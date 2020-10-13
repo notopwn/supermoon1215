@@ -4,6 +4,9 @@ import threading
 HOST = ''
 PORT = 5000
 
+a=3
+b=4
+
 class MyTcpHandler(socketserver.BaseRequestHandler):
     def handle(self):
         print('[%s] connected...'%self.client_address[0])
