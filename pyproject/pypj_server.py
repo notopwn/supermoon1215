@@ -4,12 +4,11 @@ import threading
 HOST = ''
 PORT = 5000
 
-a=3
-b=4
-
 class MyTcpHandler(socketserver.BaseRequestHandler):
     def handle(self):
         print('[%s] connected...'%self.client_address[0])
+
+    def handle(self):
 
         try:
             while True:
@@ -21,6 +20,9 @@ class MyTcpHandler(socketserver.BaseRequestHandler):
                 print('[%s]'%self.data.decode())
                 print('[%s]'%self.data)
                 self.request.sendall(self.data)
+
+            while True:
+
         except Exception as e:
             print(e)
     def a(self):
