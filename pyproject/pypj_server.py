@@ -8,8 +8,6 @@ class MyTcpHandler(socketserver.BaseRequestHandler):
     def handle(self):
         print('[%s] connected...'%self.client_address[0])
 
-    def handle(self):
-
         try:
             while True:
                 self.data = self.request.recv(1024)
@@ -20,8 +18,6 @@ class MyTcpHandler(socketserver.BaseRequestHandler):
                 print('[%s]'%self.data.decode())
                 print('[%s]'%self.data)
                 self.request.sendall(self.data)
-
-            while True:
 
         except Exception as e:
             print(e)
