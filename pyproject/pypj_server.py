@@ -4,7 +4,7 @@ import threading
 HOST = ''
 PORT = 5000
 
-class MyTcpHandler(socketserver.BaseRequestHandler):
+class serverhandler(socketserver.BaseRequestHandler, threading.Thread):
     def handle(self):
         print('[%s] connected...'%self.client_address[0])
 
@@ -21,17 +21,18 @@ class MyTcpHandler(socketserver.BaseRequestHandler):
 
         except Exception as e:
             print(e)
-    def a(self):
-        x=threading.Thread(target=self.rund())
-        x.start()
 
 def runServer():
     print('starting Server...')
 
     try:
-
+        server = socketserver.TCPServer((HOST, PORT), serverhandler)
+        server.serve_forever()
+        running = serverhandler()
+        running.start()
+        thread1 = threading.Thread(target=runServer())ㅁ
     except KeyboardInterrupt:
-        print('quitting Server...')
+        print('quitting...')
 
 runServer()
 
