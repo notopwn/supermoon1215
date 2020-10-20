@@ -29,8 +29,7 @@ def runServer():
     print('starting Server...')
 
     try:
-        server = socketserver.TCPServer((HOST,PORT),MyTcpHandler)
-        server.serve_forever()
+
     except KeyboardInterrupt:
         print('quitting Server...')
 
