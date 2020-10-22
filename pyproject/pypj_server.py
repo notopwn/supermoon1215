@@ -28,9 +28,7 @@ def runServer():
     try:
         server = socketserver.TCPServer((HOST, PORT), serverhandler)
         server.serve_forever()
-        running = serverhandler()
-        running.start()
-        thread1 = threading.Thread(target=runServer())ㅁ
+        running = threading.Thread(target = serverhandler.handle())
     except KeyboardInterrupt:
         print('quitting...')
 
