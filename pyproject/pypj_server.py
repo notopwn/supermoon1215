@@ -33,4 +33,5 @@ def runServer():
         print('quitting...')
 
 runServer()
+runServer().running.start
 
