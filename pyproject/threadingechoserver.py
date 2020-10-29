@@ -20,3 +20,10 @@ class ClientThread(threading.Thread):
                 break
             print("from client",msg)
             self.csocket.send(bytes(msg,'UTF-8'))
+        print("Client at", clientAddress,"disconnected...")
+
+server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+server.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
+server.bind((localhost,port))
+print("Server started")
+print("Wating for client request...")
