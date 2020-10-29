@@ -1,7 +1,8 @@
 import socketserver
+import threading
 
 HOST =''
-PORT = 9090
+PORT = 5000
 
 class MyTcpHandler(socketserver.BaseRequestHandler):
     def handle(self):
@@ -30,3 +31,4 @@ def runServer():
         print('quitting echo server;;;')
 
 runServer()
+threading.Thread(target = runServer())
