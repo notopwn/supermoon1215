@@ -8,12 +8,14 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM)as sock:
 
     while True:
         msg = input('enter message : ')
+        sock.sendall(msg.encode())
+        data = sock.recv(1024)
+        if msg!=data.decode():
+            print('data from server : [%s]' % data.decode())
+
         if msg == '/quit':
             sock.sendall(msg.encode())
             break
 
-        sock.sendall(msg.encode())
-        data = sock.recv(1024)
-        print('data from server : [%s]' %data.decode())
 
 print('quitting client...')
