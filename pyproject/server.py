@@ -1,5 +1,6 @@
 import socketserver
 import threading
+import random
 
 HOST =''
 PORT = 5000
@@ -14,6 +15,9 @@ class MyTcpHandler(socketserver.BaseRequestHandler):
                 if self.data.decode() == '/quit':
                     print('%s disconnected by user'%self.client_address[0])
                     return
+                if self.data.decode()=='/start':
+                    print('game started')
+
 
                 print('%s'%self.data.decode())
                 self.request.sendall(self.data)
