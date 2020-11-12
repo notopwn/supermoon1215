@@ -48,7 +48,7 @@ class MultiChatServer:
                     socket.sendall(self.finalrecievedmessage.encode('utf-8'))
                 except:
                     self.clients.remove(client)
-                    print("{},{} connection quitted".format(ip.port))
+                    print("{},{} connection quit".format(ip.port))
 
 if __name__=="__main__":
     MultiChatServer()
