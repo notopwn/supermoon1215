@@ -4,14 +4,14 @@ from tkinter.scrolledtext import ScrolledText
 from threading import *
 
 PORT = 5000
-HOST: str = '192.168.0.36'
+HOST: str = '127.0.0.1'
 
 class ChatClient:
     client_socket = None
 
     def __init__(self, ip, port):
-        self.initalize_socket(ip,port)
-        self.initizlize_gui()
+        self.initialize_socket(ip,port)
+        self.initialize_gui()
         self.listen_thread()
 
     def initialize_socket(self, ip, port):
@@ -38,7 +38,7 @@ class ChatClient:
             fr[i].pack(fill=BOTH)
 
         self.name_label = Label(fr[0], text = 'username')
-        self.rexv_label = Label(fr[1], text = 'received message')
+        self.recv_label = Label(fr[1], text = 'received message')
         self.send_label = Label(fr[3], text = 'sending message')
         self.send_btn = Button(fr[3], text = '전송', command=self.send_chat)
         self.chat_transcript_area = ScrolledText(fr[2],height = 20,width = 60)
@@ -51,7 +51,7 @@ class ChatClient:
         self.send_btn.pack(side=RIGHT,padx=20)
         self.chat_transcript_area.pack(side=LEFT,padx=2,pady=2)
         self.send_label.pack(side=LEFT)
-        self.endter_text_widget.pack(side=LEFT,padx=2,pady=2)
+        self.enter_text_widget.pack(side=LEFT,padx=2,pady=2)
 
     def listen_thread(self):
         t = Thread(target=self.receive_message,args = (self.client_socket,))
@@ -67,7 +67,9 @@ class ChatClient:
             so.close()
 
 if __name__ == "__main__":
-    ip = HOST
-    port = PORT
+    ip = input("server ip addr")
+    if ip == '':
+        ip = '127.0.0.1'
+    port = 5000
     ChatClient(ip,port)
     mainloop()
