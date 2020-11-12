@@ -3,6 +3,9 @@ from tkinter import *
 from tkinter.scrolledtext import ScrolledText
 from threading import *
 
+PORT = 5000
+HOST: str = '192.168.0.36'
+
 class ChatClient:
     client_socket = None
 
@@ -64,9 +67,7 @@ class ChatClient:
             so.close()
 
 if __name__ == "__main__":
-    ip = input("server IP addr:")
-    if ip == '':
-        ip = 'localhost'
-    port = 5000
+    ip = HOST
+    port = PORT
     ChatClient(ip,port)
     mainloop()
