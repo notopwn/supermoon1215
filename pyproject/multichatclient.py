@@ -21,8 +21,8 @@ class ChatClient:
         self.client_socket.connect((remote_ip,remote_port))
 
     def send_chat(self):
-        senders_name = self.name_widget.get().strip() + ":"
-        data = self.enter_text_widget.get(1.0,'end').strip()
+        senders_name = self.name_widget.get().strip() + ":"#이름
+        data = self.enter_text_widget.get(1.0,'end').strip()#보낼
         message = (senders_name + data).encode('utf-8')
         self.chat_transcript_area.insert('end', message.decode('utf-8') + '\n')
         self.chat_transcript_area.yview(END)
@@ -59,7 +59,7 @@ class ChatClient:
 
     def receive_message(self,so):
         while True:
-            buf = so.recv(256)
+            buf = so.recv(1024)
             if not buf:
                 break
                 self.chat_transcript_area.insert('end',buf.decode('utf-8')+'\n')

@@ -7,6 +7,7 @@ from threading import *
 class MultiChatServer:
     clients = []
     final_received_message = ""
+    iscorrect = 0
 
     def __init__(self):
         global HOST,PORT
@@ -51,6 +52,17 @@ class MultiChatServer:
                 except:
                     self.clients.remove(client)
                     print("{},{} disconnected".format(ip,port))
+
+    def game_start(self, final_received_message, iscorrect):
+        self.final_received_message = final_received_message
+        first = ''
+        second = ''
+        self.iscorrect = iscorrect #맞으면 1 틀리면 2
+
+        if second.startswith(first[-1]):
+            
+
+
 
 if __name__ == "__main__":
     MultiChatServer()
