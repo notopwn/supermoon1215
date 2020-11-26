@@ -74,10 +74,9 @@ class MultiChatServer:
                         a=self.game_start(self.final_received_message.encode('utf-8'), self.iscorrect, self.turn)
                         if (a == 1):
                             self.turn = self.turn+1
-
+                            socket.sendall('/right_answer')
                         else:
-
-
+                            socket.sendall('/wrong answer')
                     else:
                         socket.sendall(self.final_received_message.encode('utf-8'))
                 except:
