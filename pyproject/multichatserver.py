@@ -8,6 +8,28 @@ class MultiChatServer:
     clients = []
     final_received_message = ""
     iscorrect = 0
+    turn = 0
+
+    def game_start(self, final_received_message, iscorrect,turn):
+        self.final_received_message = final_received_message
+        self.turn = 0
+        first = ''
+        second =''
+        if (first != ''):
+            second = final_received_message
+        else:
+            first = final_received_message
+
+        self.iscorrect = iscorrect #맞으면 1 틀리면 2
+
+        if second.startswith(first[-1]):
+            iscorrect = 1
+            turn = turn + 1
+        else:
+            iscorrect = 2
+
+        return iscorrect
+
 
     def __init__(self):
         global HOST,PORT
@@ -48,21 +70,19 @@ class MultiChatServer:
             socket,(ip,port) = client
             if socket is not senders_socket:
                 try:
-                    socket.sendall(self.final_received_message.encode('utf-8'))
+                    if (self.final_received_message.encode('utf-8') == '/start'):
+                        a=self.game_start(self.final_received_message.encode('utf-8'), self.iscorrect, self.turn)
+                        if (a == 1):
+                            self.turn = self.turn+1
+
+                        else:
+
+
+                    else:
+                        socket.sendall(self.final_received_message.encode('utf-8'))
                 except:
                     self.clients.remove(client)
                     print("{},{} disconnected".format(ip,port))
-
-    def game_start(self, final_received_message, iscorrect):
-        self.final_received_message = final_received_message
-        first = ''
-        second = ''
-        self.iscorrect = iscorrect #맞으면 1 틀리면 2
-
-        if second.startswith(first[-1]):
-            
-
-
 
 if __name__ == "__main__":
     MultiChatServer()

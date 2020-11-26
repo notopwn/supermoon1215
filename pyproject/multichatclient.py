@@ -4,7 +4,7 @@ from tkinter.scrolledtext import ScrolledText
 from threading import *
 
 PORT = 5000
-HOST: str = '127.0.0.1'
+HOST: str = '49.164.41.79'
 
 class ChatClient:
     client_socket = None
